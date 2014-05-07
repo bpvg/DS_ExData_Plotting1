@@ -22,14 +22,19 @@ dataset <- read.table(myconn, TRUE, ";", na.strings="?", stringsAsFactors=FALSE)
 filtered_data <- dataset[(dataset$Date=="1/2/2007" | dataset$Date=="2/2/2007"), ]
 rm(dataset)
 
+# Convert date and time to date/time
+filtered_data$Date <- as.Date(filtered_data$Date, "%d/%m/%Y")
+filtered_data$Date <- as.POSIXlt(paste(filtered_data$Date,filtered_data$Time) ,format="%Y-%m-%d %H:%M:%S")
+filtered_data <- filtered_data[,-2]
+
 # == Start ploting ==
-hist(filtered_data$Global_active_power,
-     main = "Global Active Power", 
-     col="red",
-     xlab="Global Active Power (kilowatts)")
-# copy to png file and close device
+plot(filtered_data$Global_active_power, filtered_data$Date, 
+     type = "l"
+     main = "", 
+     col  = "black",
+     ylab = "Global Active Power (kilowatts)")
 dev.copy(png, 
-         filename = "plot1.png", 
+         filename = "plot2.png", 
          width = 480, 
          height = 480)
 dev.off()
