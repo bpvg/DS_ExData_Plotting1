@@ -52,6 +52,12 @@ RunPlot.1 <- function(){
                dataset[(dataset$Date=="1/2/2007" | dataset$Date=="2/2/2007"), ],
                envir=.GlobalEnv)
         rm(dataset) # No longer needed.
+        
+        # Convert date and time columns to date+time
+        GLB_filtered_data$Date <- as.POSIXlt(paste(GLB_filtered_data$Date,
+                                                   GLB_filtered_data$Time),
+                                             format="%d/%m/%Y %H:%M:%S")
+        GLB_filtered_data <- GLB_filtered_data[,-2] #remove time
     }
     
     # == Start ploting ==
