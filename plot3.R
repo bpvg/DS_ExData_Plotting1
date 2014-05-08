@@ -28,16 +28,36 @@ filtered_data$Date <- as.POSIXlt(paste(filtered_data$Date,filtered_data$Time) ,f
 filtered_data <- filtered_data[,-2]
 
 # == Start ploting ==
+# I got weird results when using dev.copy(), so after setting all up on screen I
+# changed the output method to redirect to png.
+png (filename = "plot3.png", width = 480, height = 480)
+
+# I'll start adding a first plot for sub1, and then 2 different sub's via points
 plot(filtered_data$Date,  # X
-     filtered_data$Global_active_power,  # Y
-     type = "l", #line
+     filtered_data$Sub_metering_1,
+     type = "l", #none. 
      main = "", 
      col  = "black",
      xlab = "",
-     ylab = "Global Active Power (kilowatts)")
-dev.copy(png, 
-         filename = "plot2.png", 
-         width = 480, 
-         height = 480)
+     ylab = "Energy Sub Metering")
+# Sub2
+points(filtered_data$Date,
+       filtered_data$Sub_metering_2,
+       type = "l",
+       col  = "red"
+       )
+# Sub3
+points(filtered_data$Date,
+       filtered_data$Sub_metering_3,
+       type = "l",
+       col  = "blue"
+)
+# Now I'll add the legend.
+legend("topright",
+       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+       col    = c("black",          "red",            "blue"),
+       pch    = c("-",              "-",              "-"),
+       lwd    = c(2,                2,                2)
+       )
 dev.off()
 
