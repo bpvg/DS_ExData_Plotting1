@@ -1,7 +1,15 @@
 Hi,
 
-Welcome to my Project /Peer Review Assignment.
-I hope enjoy grading it.
+Welcome to my Project /Peer Review Assignment. I hope enjoy grading it.
+
+All the files have a similar structure and have 3 main building blocks (2 of them common to all scripts):
+* Checking for the existence of original data file and downloading it if it is not present;
+* Processing the data by filtering the required dates, converting date values 
+and store the processed data.frame in the Global Environment for later retrieval.
+Importing and processing the data is quite time consuming, so if the data were processed once by one of the 4 scrips all the other runs on the same or other script will get data from the previously stored data.frame;
+* Plotting the actual chart.
+
+To run all the code, we should use functions 'RunPlot.x()' present inside the scripts.
 
 Regards
 
