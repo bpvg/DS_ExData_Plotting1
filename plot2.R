@@ -12,7 +12,7 @@
 # Total:        7817       1653       6163
 
 
-# Main Function to execute full scrip
+# Main Function to execute full script
 RunPlot.2 <- function(){
     
     # == Initialize 'constants' ==
@@ -37,7 +37,7 @@ RunPlot.2 <- function(){
     # At this point the data file should be present at the wd if we need to read
     # it. I'll store the final data.frame in the Global Environment so before doing
     # anything else I'll check if it exists from a previous run on any of the
-    # assignment's scrips.
+    # assignment's scripts.
     
     # Variable Checking to decide if we need to load the data again.
     if (!exists("GLB_filtered_data", envir=.GlobalEnv)) {
@@ -57,7 +57,7 @@ RunPlot.2 <- function(){
         GLB_filtered_data <- GLB_filtered_data[,-2] #remove time
         
         # Storing the dataset on the Global Environment to avoid reprocessing on
-        # every scrip. 
+        # every script. 
         assign("GLB_filtered_data", GLB_filtered_data, envir=.GlobalEnv)
         
     }
